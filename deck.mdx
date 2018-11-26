@@ -1,0 +1,25 @@
+import { Appear, Notes, Head } from 'mdx-deck';
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import nightOwl from 'prism-react-renderer/themes/nightOwl';
+
+<Head>
+  <title>React 16.6: The Lost Levels</title>
+</Head>
+
+export { default as theme } from './theme';
+
+# React 16.6
+
+## The Lost Levels
+
+---
+
+## About Me
+
+---
+
+<CodeSurfer
+  title="Test"
+  theme={nightOwl}
+  code={require('!raw-loader!./src/app.js')}
+/>

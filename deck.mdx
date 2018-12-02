@@ -5,6 +5,17 @@ import CodeBlock from './code-block';
 
 <Head>
   <title>React 16.6: The Lost Levels</title>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@bodiddlie" />
+  <meta name="twitter:title" content="React 16.6: The Lost Levels" />
+  <meta
+    name="twitter:description"
+    content="Slides from my lightning talk on React 16.6 for PHX ReactJS"
+  />
+  <meta
+    name="twitter:image"
+    content="https://react-lostlevel.netlify.com/card.png"
+  />
 </Head>
 
 export { default as theme } from './theme';
@@ -19,7 +30,7 @@ export { default as theme } from './theme';
 
 - React.lazy & Suspense
 - React.memo
-- new contextTypes
+- new `contextType`
 
 other stuff there's not time for
 
@@ -47,51 +58,107 @@ other stuff there's not time for
     <li>Uses <CodeBlock>React.lazy</CodeBlock> to lazy load Components</li>
     <li><CodeBlock>&lt;Suspense&gt;</CodeBlock> provides fallback</li>
     <li>Webpack handles the code-splitting</li>
-    <li>Only currently released funcitonality of Suspense</li>
+    <li>Only currently released functionality of Suspense</li>
   </Appear>
 </ul>
 ---
 
 <CodeSurfer
-  title="Test"
+  title="Lazy Loading Code Sample"
   theme={nightOwl}
   code={require('!raw-loader!./src/app.js')}
+  steps={[
+    { lines: [1], notes: 'Import lazy and Suspense' },
+    { range: [7, 8], notes: 'Dynamically import components' },
+    { lines: [21, 30], notes: 'Wrap in <Suspense>' },
+    { range: [23, 27], notes: 'Use render prop for React Router' },
+  ]}
 />
 
 ---
 
-## Demo
+# Demo
 
 ---
 
-## Memoizing Functional Components
+# Memoizing Functional Components
+
+<ul style={{textAlign: 'left', fontSize: '1.5em'}}>
+  <Appear>
+    <li>Use <CodeBlock>React.memo</CodeBlock> HOC to memoize a functional component</li>
+    <li>Component will only get re-rendered if props change</li>
+    <li>Only does a shallow comparison by default</li>
+    <li>2nd parameter allows for custom comparison function</li>
+    <li>Similar to <CodeBlock>shouldComponentUpdate</CodeBlock></li>
+  </Appear>
+</ul>
+---
+
+<CodeSurfer
+  title="Memoization Code Sample"
+  theme={nightOwl}
+  code={require('!raw-loader!./src/stupid.js')}
+  steps={[
+    { range: [3, 13], notes: 'Stupidly expensive render' },
+    { lines: [19], notes: 'React.memo HOC to memoize' },
+  ]}
+/>
 
 ---
 
-Code sample for memo goes here
+# Demo
 
 ---
 
-## Demo
+# New `contextType`
+
+<ul style={{textAlign: 'left', fontSize: '1.5em'}}>
+  <Appear>
+    <li><CodeBlock>createContext</CodeBlock> much simpler than old context</li>
+    <li>But render props are pain when you need lifecycles</li>
+  </Appear>
+</ul>
+---
+
+<CodeSurfer
+  title="The Invariably Necessary HOC"
+  theme={nightOwl}
+  code={require('!raw-loader!./src/context-hoc.js')}
+  steps={[
+    { lines: [3], notes: 'Creating context' },
+    { range: [5, 11], notes: "We'll need this somewhere" },
+  ]}
+/>
 
 ---
 
-## Simpler way to handle context
+<CodeSurfer
+  title="No More HOC needed"
+  theme={nightOwl}
+  code={require('!raw-loader!./src/context-type.js')}
+  steps={[
+    { lines: [3], notes: 'Import the Context object' },
+    { lines: [6], notes: 'Tell our class component where to get context' },
+    { range: [8, 13], notes: 'Context is now available in lifecycles' },
+    { range: [15, 18], notes: 'And also in render' },
+  ]}
+/>
 
 ---
 
-show example of a withContext HOC?
+# Caveat
 
----
-
-code sample of contextTypes
-
----
-
-## Demo
+- Only one `contextType` per class component
+- If you need more than one, back to nesting render props or multiple HOCs
+- `useContext` hook will be awesome for this when 16.7 releases
 
 ---
 
 # Wrap Up
 
-link to blog post
+- [Official Blog Post for 16.6](https://reactjs.org/blog/2018/10/23/react-v-16-6.html)
+- Slides available at [https://react-lostlevel.netlify.com](https://react-lostlevel.netlify.com)
+- Demo code and slide markup at [https://github.com/bodiddlie/lostlevel](https://github.com/bodiddlie/lostlevel)
+- [@bodiddlie](https://twitter.com/bodiddlie) on Twitter
+
+### Thank you! 🤗

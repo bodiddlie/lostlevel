@@ -32,8 +32,6 @@ export { default as theme } from './theme';
 - React.memo
 - new `contextType`
 
-other stuff there's not time for
-
 ---
 
 # Timeline
@@ -47,17 +45,12 @@ other stuff there's not time for
 
 ---
 
-<img src={require('file-loader!./public/166.gif')} />
-
----
-
 # Lazy Loading / Code Splitting
 
 <ul style={{textAlign: 'left', fontSize: '1.5em'}}>
   <Appear>
     <li>Uses <CodeBlock>React.lazy</CodeBlock> to lazy load Components</li>
     <li><CodeBlock>&lt;Suspense&gt;</CodeBlock> provides fallback</li>
-    <li>Webpack handles the code-splitting</li>
     <li>Only currently released functionality of Suspense</li>
   </Appear>
 </ul>
@@ -89,7 +82,6 @@ other stuff there's not time for
     <li>Component will only get re-rendered if props change</li>
     <li>Only does a shallow comparison by default</li>
     <li>2nd parameter allows for custom comparison function</li>
-    <li>Similar to <CodeBlock>shouldComponentUpdate</CodeBlock></li>
   </Appear>
 </ul>
 ---
@@ -116,20 +108,9 @@ other stuff there's not time for
   <Appear>
     <li><CodeBlock>createContext</CodeBlock> much simpler than old context</li>
     <li>But render props are pain when you need lifecycles</li>
+    <li>End up creating various <CodeBlock>with*</CodeBlock> HOCs</li>
   </Appear>
 </ul>
----
-
-<CodeSurfer
-  title="The Invariably Necessary HOC"
-  theme={nightOwl}
-  code={require('!raw-loader!./src/context-hoc.js')}
-  steps={[
-    { lines: [3], notes: 'Creating context' },
-    { range: [5, 11], notes: "We'll need this somewhere" },
-  ]}
-/>
-
 ---
 
 <CodeSurfer
